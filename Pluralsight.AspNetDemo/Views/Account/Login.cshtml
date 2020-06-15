@@ -1,0 +1,32 @@
+﻿@using Microsoft.Owin.Security
+@model Pluralsight.AspNetDemo.Controllers.LoginModel
+
+<h1>Registration</h1>
+<hr />
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+    @Html.LabelFor(x => x.Username) @Html.TextBoxFor(x => x.Username)
+    <br />
+    @Html.LabelFor(x => x.Password) @Html.PasswordFor(x => x.Password)
+    <br />
+    <input class="btn" type="submit" value="Login" />
+}
+@Html.ActionLink("Forgot Password?", "ForgotPassword")
+
+@{
+    var providers = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+
+    if (providers != null && providers.Any())
+    {
+        using (Html.BeginForm("ExternalAuthentication", "Account", FormMethod.Post))
+        {
+            foreach (var provider in providers)
+            {
+                <button class="btn" value="@provider.AuthenticationType" name="provider" type="submit">
+                    @provider.Caption
+                </button>
+            }
+        }
+    }
+}

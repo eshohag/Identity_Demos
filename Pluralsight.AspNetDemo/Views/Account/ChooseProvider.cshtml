@@ -1,0 +1,9 @@
+﻿@model Pluralsight.AspNetDemo.Controllers.ChooseProviderModel
+
+<h1>Choose Provider</h1>
+<hr/>
+@using (Html.BeginForm("ChooseProvider", "Account", FormMethod.Post))
+{
+    <p>Provider: @Html.DropDownListFor(x => x.ChosenProvider, Model.Providers.Select(x => new SelectListItem {Value = x, Text = x}).ToList())</p>
+    <input class="btn" value="Submit" type="submit"/>
+}

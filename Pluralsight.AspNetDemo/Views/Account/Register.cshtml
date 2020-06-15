@@ -1,0 +1,13 @@
+﻿@model Pluralsight.AspNetDemo.Controllers.RegisterModel
+
+<h1>Registration</h1>
+<hr/>
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+  @Html.ValidationSummary()
+    @Html.LabelFor(x => x.Username) @Html.TextBoxFor(x => x.Username)
+    <br/>
+    @Html.LabelFor(x => x.Password) @Html.PasswordFor(x => x.Password)
+    <br/>
+    <input class="btn" type="submit" value="Register"/>
+}
